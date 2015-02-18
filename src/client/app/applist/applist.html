@@ -1,0 +1,22 @@
+<div ng-init="vm.InitPage()">
+    <sign-out class="pull-right btn-inverse"></sign-out>
+    <section class="menu container">
+        <div ng-loader ng-show="vm.showLoader"></div>
+        <nav class="row">
+            <ul class="list-unstyled">
+                <li class="col-md-4 col-sm-12" ng-repeat="item in vm.MenuItems">
+                    <a class="btn btn-block btn-inverse clearfix" href="{{item.Url}}" target="_blank">
+                        <i class="fa fa-{{item.Icon}} fa-3x pull-left"></i>
+                        <div class="menuText">
+                            {{item.Title}} <br/>
+                            <small>{{item.SubTitle}}</small>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+</div>
+
+

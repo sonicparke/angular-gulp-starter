@@ -1,67 +1,39 @@
 (function() {
     'use strict';
 
-    angular
-        .module('app.core')
-        .factory('dataservice', dataservice);
+    angular.module('app.core')
+        .factory('DataService', DataService);
 
-    dataservice.$inject = ['$http', '$location', '$q', 'exception', 'logger'];
+    DataService.$inject = ['$q', 'AppSecurity'];
     /* @ngInject */
-    function dataservice($http, $location, $q, exception, logger) {
-        var readyPromise;
+    function DataService($q, AppSecurity) {
 
         var service = {
-            getCustomer: getCustomer,
-            getCustomers: getCustomers,
-            ready: ready
+            Login: Login,
+            GetMenuItems: GetMenuItems
         };
 
         return service;
 
-        function getCustomer(id) {
-            return $http.get('/api/customer/' + id)
-                .then(getCustomerComplete)
-                .catch(function(message) {
-                    exception.catcher('XHR Failed for getCustomer')(message);
-                    $location.url('/');
-                });
-
-            function getCustomerComplete(data, status, headers, config) {
-                return data.data;
-            }
+        function Login(data) {
+            var deferred = $q.defer();
+            var params = data;
+            var results = AppSecurity.all('login').post(params).then(function(result) {
+                deferred.resolve(result);
+            });
+            return deferred.promise;
         }
 
-        function getCustomers() {
-            return $http.get('/api/customers')
-                .then(getCustomersComplete)
-                .catch(function(message) {
-                    exception.catcher('XHR Failed for getCustomers')(message);
-                    $location.url('/');
-                });
-
-            function getCustomersComplete(data, status, headers, config) {
-                return data.data;
-            }
+        function GetMenuItems(data) {
+            var deferred = $q.defer();
+            var params = {UserName: data};
+            var results = AppSecurity.all('menuitems').getList(params).then(function(result) {
+                deferred.resolve(result);
+            });
+            return deferred.promise;
         }
 
-        function getReady() {
-            if (!readyPromise) {
-                // Apps often pre-fetch session data ("prime the app")
-                // before showing the first view.
-                // This app doesn't need priming but we add a
-                // no-op implementation to show how it would work.
-                logger.info('Primed the app data');
-                readyPromise = $q.when(service);
-            }
-            return readyPromise;
-        }
 
-        function ready(promisesArray) {
-            return getReady()
-                .then(function() {
-                    return promisesArray ? $q.all(promisesArray) : readyPromise;
-                })
-                .catch(exception.catcher('"ready" function failed'));
-        }
     }
+
 })();

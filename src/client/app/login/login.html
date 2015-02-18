@@ -1,0 +1,28 @@
+<div ng-init="InitPage()" class="container">
+
+
+
+<div class="well login-box">
+    <h3>Please Login</h3>
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="username" class="control-label sr-only">Username</label>
+        <div class="col-md-12 col-sm-12">
+            <input autofocus ng-model="vm.login.Username" name="username" type="text" class="form-control" id="inputName" placeholder="Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="control-label sr-only">Password</label>
+        <div class="col-md-12 col-sm-12">
+            <input ng-model="vm.login.Password" name="password" type="password" class="form-control" id="inputEmail" placeholder="Password">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
+            <ui-button button-class="btn-success" text="Sign In"  ng-disabled="!vm.login.Username || !vm.login.Password" active-text="Signing In" click-fn="vm.Login()" icon="sign-in"></ui-button>
+        </div>
+    </div>
+</form></div>
+
+
+</div>

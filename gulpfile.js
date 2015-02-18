@@ -36,16 +36,16 @@
     // Clean the styles folder first
     //
     ////////////////////
-    gulp.task('styles', ['clean-styles'], function() {
-        log('Compiling Less --> CSS');
-
-        return gulp
-            .src(config.less)
-            .pipe($.plumber()) // Catch any errors
-            .pipe($.less())
-            .pipe($.autoprefixer({browsers: ['last 2 version', '> 5%']}))
-            .pipe(gulp.dest(config.temp));
-    });
+    //gulp.task('styles', ['clean-styles'], function() {
+    //    log('Compiling Less --> CSS');
+    //
+    //    return gulp
+    //        .src(config.less)
+    //        .pipe($.plumber()) // Catch any errors
+    //        .pipe($.less())
+    //        .pipe($.autoprefixer({browsers: ['last 2 version', '> 5%']}))
+    //        .pipe(gulp.dest(config.temp));
+    //});
 
     ////////////////////
     //
@@ -178,7 +178,8 @@
     // Also make sure $templateCache and wiredep have run
     //
     ////////////////////
-    gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
+    //TODO put styles task back in once I'm using pre-processing
+    gulp.task('inject', ['wiredep', 'templatecache'], function() {
         log('Wire up the css into the html, and call wiredep');
 
         return gulp
@@ -228,6 +229,34 @@
             .pipe(gulp.dest(config.build)) // Write files to build folder
             .pipe($.rev.manifest()) // Create a manifest file to show rev from & to filenames
             .pipe(gulp.dest(config.build)); // Write out rev manifest file to build folder
+    });
+
+
+    ////////////////////
+    //
+    // Deploy to Web Server
+    // --type=dev
+    // --type=test
+    // --type=prod
+    //
+    ////////////////////
+    gulp.task('deploy', function() {
+        var msg = 'Deploying ';
+        var type = args.type;
+        var deployPath = config.deploy + type;
+        var options = {};
+        options.type = type;
+        msg += ' to ' + config.deploy + type;
+        type = type.toLowerCase();
+        if (type === 'prod') {
+            deployPath = config.deploy;
+
+        }
+        log(msg);
+        return gulp
+            .src(config.build + '/**/*')
+            .pipe($.print())
+            .pipe(gulp.dest(deployPath));
     });
 
     ////////////////////

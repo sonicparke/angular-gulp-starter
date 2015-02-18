@@ -5,6 +5,8 @@ module.exports = function() {
     var server = './src/server/';
     var temp = './.tmp/';
 
+    var deploy = '//axcuscatwsweb01/c$/inetpub/wwwroot/launchpad';
+
     var config = {
 
 
@@ -17,8 +19,16 @@ module.exports = function() {
         ],
         build: './build/',
         client: client,
-        css: temp + 'styles.css',
-        fonts: './bower_components/font-awesome/fonts/**/*.*',
+        css: [
+            client + 'styles/*.css',
+            clientApp + '**/*.css'
+        ],
+        cssLess: temp + 'styles.css',
+        deploy: deploy,
+        fonts: [
+            './bower_components/font-awesome/fonts/**/*.*',
+            './bower_components/webfont-opensans/fonts/**/*.*'
+        ],
         html: '**/*.html',
         htmltemplates: clientApp + '**/*.html',
         images: client + 'images/**/*.*',

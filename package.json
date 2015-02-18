@@ -1,16 +1,12 @@
 {
-  "name": "Pluralsight-Gulp",
-  "version": "0.1.0",
-  "description": "Starter Code for Pluralsight Course JavaScript Build Automation with Gulp.js",
+  "name": "LaunchPad",
+  "version": "0.2.0",
+  "description": "AXC Apps Launch Pad",
   "authors": [
-    "John Papa"
+    "Brad McAlister"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/johnpapa/pluralsight-gulp",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/johnpapa/pluralsight-gulp.git"
-  },
+  "homepage": "http://axcapps.harsco.com/launchpad",
   "scripts": {
     "init": "npm install",
     "install": "bower install",

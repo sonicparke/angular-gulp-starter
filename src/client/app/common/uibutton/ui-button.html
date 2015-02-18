@@ -1,0 +1,4 @@
+<button class="btn {{buttonClass}}" ng-click="onClick(data)" ng-show="showButton">
+    <i class="fa " ng-class="{'fa-{{icon}}': !updating, 'fa-spinner fa-spin': updating}"></i>
+    {{ updating && activeText || text  }}
+</button>

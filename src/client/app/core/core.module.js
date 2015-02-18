@@ -6,13 +6,18 @@
             /* Angular modules */
             'ngAnimate',
             'ngSanitize',
+
             /* Cross-app modules */
-            'blocks.exception',
-            'blocks.logger',
-            'blocks.router',
+            'app.loader',
+            'app.serverselect',
+            'app.uibutton',
+
             /* 3rd-party modules */
             'ui.router',
-            'ngplus'
+            'restangular',
+            'ui.bootstrap',
+            'ngStorage',
+            'toastr'
         ]);
 
 })();
