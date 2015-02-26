@@ -1,12 +1,12 @@
 {
-  "name": "LaunchPad",
-  "version": "0.2.0",
-  "description": "AXC Apps Launch Pad",
+  "name": "ngStart",
+  "version": "0.3.0",
+  "description": "Angular Starter Project",
   "authors": [
     "Brad McAlister"
   ],
   "license": "MIT",
-  "homepage": "http://axcapps.harsco.com/launchpad",
+  "homepage": "http://mydomain.com",
   "scripts": {
     "init": "npm install",
     "install": "bower install",

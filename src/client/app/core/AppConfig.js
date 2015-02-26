@@ -3,8 +3,8 @@
 
     angular.module('app.core')
         .constant('appConfig', {
-            'appname': 'LaunchPad',
-            'title': 'Launch Pad',
-            'version': '0.2.0'
+            'appname': 'ngStart',
+            'title': 'Angular Starter',
+            'version': '0.3.0'
         });
 })();

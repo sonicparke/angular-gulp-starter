@@ -4,30 +4,20 @@
     angular.module('app.core')
         .factory('DataService', DataService);
 
-    DataService.$inject = ['$q', 'AppSecurity'];
+    DataService.$inject = ['$q', 'Service'];
     /* @ngInject */
-    function DataService($q, AppSecurity) {
+    function DataService($q, Service) {
 
         var service = {
-            Login: Login,
-            GetMenuItems: GetMenuItems
+            GetItems: GetItems
         };
 
         return service;
 
-        function Login(data) {
-            var deferred = $q.defer();
-            var params = data;
-            var results = AppSecurity.all('login').post(params).then(function(result) {
-                deferred.resolve(result);
-            });
-            return deferred.promise;
-        }
-
-        function GetMenuItems(data) {
+        function GetItems(data) {
             var deferred = $q.defer();
             var params = {UserName: data};
-            var results = AppSecurity.all('menuitems').getList(params).then(function(result) {
+            var results = Service.all('menuitems').getList(params).then(function(result) {
                 deferred.resolve(result);
             });
             return deferred.promise;

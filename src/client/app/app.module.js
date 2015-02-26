@@ -9,7 +9,7 @@
         /* Feature areas */
         'app.login',
         'app.layout',
-        'app.applist'
+        'app.feature'
     ]).config(config);
 
 
@@ -25,42 +25,15 @@
 
 
         $stateProvider
-            .state('applist', {
-                url: '/applist',
-                templateUrl: 'app/applist/applist.html',
-                controller: 'AppList',
-                controllerAs: 'vm',
-                resolve: {
-                    validate: ['JWT', '$state', function(JWT, $state) {
-                        var authenticated;
-                        return JWT.getToken().then(function(res) {
-                            authenticated = res;
-                            if (!authenticated) {
-                                $state.go('login');
-                            }
-                        });
-                    }]
-                }
-            })
-            .state('login', {
-                url: '/login',
-                templateUrl: 'app/login/login.html',
-                controller: 'Login',
-                controllerAs: 'vm',
-                resolve: {
-                    validate: ['JWT', '$state', function(JWT, $state) {
-                        var authenticated;
-                        return JWT.getToken().then(function(res) {
-                            authenticated = res;
-                            if (authenticated) {
-                                $state.go('applist');
-                            }
-                        });
-                    }]
-                }
+            .state('feature', {
+                url: '/feature',
+                templateUrl: 'app/feature/feature.html',
+                controller: 'feature',
+                controllerAs: 'vm'
             });
 
-        $urlRouterProvider.otherwise('login');
+
+        $urlRouterProvider.otherwise('/');
         $tooltipProvider.options({appendToBody: true});
     }
 
